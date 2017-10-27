@@ -94,7 +94,7 @@ class Autoloader
 
 
     /**
-     * 新增一个PSR-4风格的匹配模板。
+     * 新增一个PSR-4风格的加载模板。
      *
      * @param string $namespace  名称空间。如：'your\\namespace\\'
      *     如果$namespace的最前面一个字符是“\”，会自动去除。
@@ -120,7 +120,8 @@ class Autoloader
             return false;
         }
         $namespace = trim($namespace, "\\ \t\n\r\0\x0B"); // 所有的空白字符以及“\”
-        $namespace = $namespace . '\\'; // 结尾加上“\”
+        $namespace = $namespace . '\\';
+
         // 加到查询队列中
         self::$_queue[] = [
             'type'      => 'psr4',
@@ -134,7 +135,7 @@ class Autoloader
 
 
     /**
-     * 匹配一个 PSR-4 命名空间
+     * 匹配一个PSR-4风格的加载模板。
      */
     private static function matchPsr4($FQCN, $namespace, $basedir, $len)
     {
@@ -158,7 +159,7 @@ class Autoloader
 
 
     /**
-     * 新增一个PSR-0风格的匹配模板
+     * 新增一个PSR-0风格的加载模板
      *
      * @param string $namespace  名称空间。如：'your\\namespace\\'
      *     如果$namespace的最前面一个字符是“\”，会自动去除。
@@ -199,7 +200,7 @@ class Autoloader
 
 
     /**
-     * 匹配一个PSR-0风格的模板
+     * 匹配一个PSR-0风格的加载模板。
      */
     private static function matchPsr0($FQCN, $namespace, $basedir, $len)
     {
@@ -232,7 +233,7 @@ class Autoloader
 
 
     /**
-     * 新增一个classmap风格的匹配模板。
+     * 新增一个classmap风格的加载模板。
      *
      * @param string $mapfile  mapfile文件，详见README.md中的说明。
      * @param string $basedir  mapfile中定义的类文件所在的基准目录。
@@ -273,7 +274,7 @@ class Autoloader
 
 
     /**
-     * 匹配一个mapfile风格的模板
+     * 匹配一个mapfile风格的加载模板
      */
     private static function matchClassmap($FQCN, $mapfile, $basedir, &$map)
     {
@@ -310,7 +311,7 @@ class Autoloader
 
 
     /**
-     * 新增一个alias风格的匹配模板。
+     * 新增一个alias风格的加载模板。
      *
      * @param string $alias  别名。如：Your\Class\Alias，注意：最前面没有“\”。
      * @param string $real   对应的实际类名。如：\Its\Real\FQCN，注意，最前面有“\”。
@@ -334,7 +335,7 @@ class Autoloader
 
 
     /**
-     * 匹配一个alias风格的模板。
+     * 匹配一个alias风格的加载模板。
      */
     private static function matchAlias($FQCN, $alias, $real)
     {

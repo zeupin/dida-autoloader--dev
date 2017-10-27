@@ -5,7 +5,7 @@
 ## 特点
 
 * 轻量级，仅有一个独立的PHP文件，方便随处调用。
-* 支持五种加载模式： PSR-4, PSR-0, Namespace, Classmap, Alias.
+* 支持四种加载模式： PSR-4, PSR-0, Classmap, Alias.
 * 可以方便灵活地直接加载一些尚处于开发状态或者测试状态的类。这些类因为还没有正式发布到packagist，如果用composer模式处理很繁琐。
 * MIT版权协议，免费商用。
 
@@ -39,9 +39,9 @@ composer require dida/autoloader
 ```
 
 > 这种方式是PHP包的常规安装方式，但是用这种方法会导致一个问题：
-> 
+>
 > 当碰到未知类时，是先在Composer中查，查不到才会到本类中查。而我们实际项目中，往往是希望是先到本类中查，查不到再去Composer中查。
-> 
+>
 > 如果你是用这个方式调用本类的话，尤其需要注意查找未知类的匹配优先级问题。
 
 
@@ -53,12 +53,11 @@ composer require dida/autoloader
 public static function init();
 ```
 
-### 五种匹配模式
+### 四种匹配模式
 
 ```php
 public static function addPsr4($namespace, $basedir);
 public static function addPsr0($namespace, $basedir);
-public static function addNamespace($namespace, $basedir);
 public static function addClassmap($mapfile, $basedir = null);
 public static function addAlias($alias, $real);
 ```
@@ -69,8 +68,8 @@ public static function addAlias($alias, $real);
 require '/path/to/Autoloader.php';
 
 Autoloader::init();
+Autoloader::addPsr4('Dida\\', '/your/root/path/');
 Autoloader::addClassmap(__DIR__ . 'FooMap.php', '/your/real/base/path');
-Autoloader::addNamespace('Foo\\Bar', __DIR__ . '/Your/Path');
 ```
 
 ### 如果是采用Classmap匹配模式时，相应的mapfile文件的示例如下：
