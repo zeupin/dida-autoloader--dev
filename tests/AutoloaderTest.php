@@ -34,6 +34,5 @@ class AutoloaderTest extends TestCase
     {
         Autoloader::init();
         Autoloader::addPsr4('Dida', 'D:/Projects/github/dida-db/dev/src/Dida/Db');
-        echo Debug::varExport(Autoloader::dump());
     }
 }
