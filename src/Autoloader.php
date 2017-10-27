@@ -97,13 +97,15 @@ class Autoloader
      * 登记一个PSR-4风格的namespace。
      *
      * @param string $namespace  名称空间。如：'your\\namespace\\'
+     *     如果$namespace的最前面一个字符是“\”，会自动去除。
+     *     如果$namespace的最后一个字符不是“\”，会自动加上。
      * @param string $basedir    基准目录。如：'/your/namespace/base/directory/'
      *
-     * @return bool
+     * @return boolean
      */
     public static function addPsr4($namespace, $basedir)
     {
-        // 确保做过init动作
+        // 确保做过init动作。
         self::init();
 
         // 检查 $basedir
@@ -113,12 +115,12 @@ class Autoloader
             $basedir = realpath($basedir);
         }
 
-        // 预处理 $namepsace
+        // 把$namepsace标准化。
         if (!is_string($namespace)) {
             return false;
         }
         $namespace = trim($namespace, "\\ \t\n\r\0\x0B"); // 所有的空白字符以及“\”
-
+        $namespace = $namespace . '\\'; // 结尾加上“\”
         // 加到查询队列中
         self::$_queue[] = [
             'type'      => 'psr4',
@@ -132,19 +134,19 @@ class Autoloader
 
 
     /**
-     * Matches a PSR-4 namespace
+     * 匹配一个 PSR-4 命名空间
      */
     private static function matchPsr4($FQCN, $namespace, $basedir, $len)
     {
-        // Checks if the prefix is matched.
-        if (strncmp($FQCN, $namespace . '\\', $len + 1) !== 0) {
+        // 检查FQCN是否位于这个namespace
+        if (strncmp($FQCN, $namespace, $len) !== 0) {
             return false;
         }
 
-        // Strips the namespace
-        $rest = substr($FQCN, $len + 1);
+        // 截取要匹配的部分
+        $rest = substr($FQCN, $len);
 
-        // Checks if the target php file exists.
+        // 检查目标文件是否存在
         $target = "{$basedir}/{$rest}.php";
         if (file_exists($target) && is_file($target)) {
             require $target;
