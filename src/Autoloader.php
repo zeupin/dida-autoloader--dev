@@ -58,13 +58,6 @@ class Autoloader
                     }
                     break;
 
-                case 'namespace':
-                    $result = self::matchNamespace($FQCN, $item['namespace'], $item['basedir'], $item['len']);
-                    if ($result) {
-                        return true;
-                    }
-                    break;
-
                 case 'psr4':
                     $result = self::matchPsr4($FQCN, $item['namespace'], $item['basedir'], $item['len']);
                     if ($result) {
