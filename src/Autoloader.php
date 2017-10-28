@@ -3,6 +3,12 @@
  * Dida Framework --Powered by Zeupin LLC
  * http://dida.zeupin.com
  */
+
+namespace Dida;
+
+/**
+ * Autoloader
+ */
 class Autoloader
 {
     /**
@@ -98,7 +104,7 @@ class Autoloader
      */
     public static function addPsr4($namespace, $basedir)
     {
-        // 确保做过init动作。
+        // 确保初始化已经完成
         self::init();
 
         // 检查 $basedir
@@ -163,7 +169,7 @@ class Autoloader
      */
     public static function addPsr0($namespace, $basedir)
     {
-        // 确保做过init动作
+        // 确保初始化已经完成
         self::init();
 
         // 检查 $basedir
@@ -180,7 +186,7 @@ class Autoloader
         $namespace = trim($namespace, "\\ \t\n\r\0\x0B"); // 所有的空白字符以及“\”
         $namespace = $namespace . '\\';
 
-        // 加到队列中
+        // 加到查询队列中
         self::$_queue[] = [
             'type'      => 'psr0',
             'namespace' => $namespace,
@@ -235,7 +241,7 @@ class Autoloader
      */
     public static function addClassmap($mapfile, $basedir = null)
     {
-        // 确保做过init动作
+        // 确保初始化已经完成
         self::init();
 
         // 检查mapfile
@@ -275,24 +281,24 @@ class Autoloader
         if (is_null($map)) {
             $map = require($mapfile);
 
-            // Checks $map, sets it to [] if invalid.
+            // 检查mapfile的内容是否合法
             if (!is_array($map)) {
                 $map = [];
                 return false;
             }
         }
 
-        // Checks if $map is empty.
+        // 如果内容是个空数组，则无需查询，直接退出就行
         if (empty($map)) {
             return false;
         }
 
-        // Checks if FQCN exists.
+        // 检查map里面是否有FQCN
         if (!array_key_exists($FQCN, $map)) {
             return false;
         }
 
-        // Loads the target file.
+        // 如果找到这条记录，载入对应的文件。如果对应的文件不存在，返回false
         $target = $basedir . '/' . $map[$FQCN];
         if (file_exists($target) && is_file($target)) {
             require $target;
@@ -313,10 +319,10 @@ class Autoloader
      */
     public static function addAlias($alias, $real)
     {
-        // Initialize
+        // 确保初始化已经完成
         self::init();
 
-        // Adds it to $_queue
+        // 加到查询队列中
         self::$_queue[] = [
             'type'  => 'alias',
             'alias' => $alias,

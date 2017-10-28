@@ -26,13 +26,13 @@ class AutoloaderTest extends TestCase
      */
     public function test_init()
     {
-        Autoloader::init();
+        \Dida\Autoloader::init();
     }
 
 
     public function test_dumpPsr4()
     {
-        Autoloader::init();
-        Autoloader::addPsr4('Dida', 'D:/Projects/github/dida-db/dev/src/Dida/Db');
+        \Dida\Autoloader::init();
+        \Dida\Autoloader::addPsr4('Dida', 'D:/Projects/github/dida-db/dev/src/Dida/Db');
     }
 }
