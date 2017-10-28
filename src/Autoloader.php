@@ -129,6 +129,7 @@ class Autoloader
             'len'       => strlen($namespace),
         ];
 
+        // 完成
         return true;
     }
 
@@ -194,6 +195,7 @@ class Autoloader
             'len'       => strlen($namespace),
         ];
 
+        // 完成
         return true;
     }
 
@@ -268,6 +270,7 @@ class Autoloader
             'map'     => null,
         ];
 
+        // 完成
         return true;
     }
 
@@ -329,6 +332,7 @@ class Autoloader
             'real'  => $real,
         ];
 
+        // 完成
         return true;
     }
 

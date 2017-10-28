@@ -67,9 +67,9 @@ public static function addAlias($alias, $real);
 ```php
 require '/path/to/Autoloader.php';
 
-Autoloader::init();
-Autoloader::addPsr4('Dida\\', '/your/root/path/');
-Autoloader::addClassmap(__DIR__ . 'FooMap.php', '/your/real/base/path');
+\Dida\Autoloader::init();
+\Dida\Autoloader::addPsr4('Dida\\', '/your/root/path/');
+\Dida\Autoloader::addClassmap(__DIR__ . 'FooMap.php', '/your/real/base/path');
 ```
 
 ### 如果是采用Classmap匹配模式时，相应的mapfile文件的示例如下：
