@@ -14,7 +14,7 @@ class Autoloader
     /**
      * 版本号
      */
-    const VERSION = '0.1.0';
+    const VERSION = '0.1.6';
 
     /**
      * @var boolean
