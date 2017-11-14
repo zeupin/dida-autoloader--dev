@@ -16,8 +16,8 @@
     "php": "^5.4 || ^7.0"
   },
   "autoload": {
-    "psr-0": {
-      "Autoloader": "src/"
+    "psr-4": {
+      "Dida\\": "src/Dida"
     }
   }
 }
