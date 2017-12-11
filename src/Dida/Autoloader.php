@@ -14,7 +14,7 @@ class Autoloader
     /**
      * 版本号
      */
-    const VERSION = '0.1.6';
+    const VERSION = '20171211';
 
     /**
      * @var boolean
@@ -149,6 +149,10 @@ class Autoloader
 
         // 检查目标文件是否存在
         $target = "{$basedir}/{$rest}.php";
+
+        // 把文件路径标准化，统一使用unix格式
+        $target = str_replace('\\', '/', $target);
+
         if (file_exists($target) && is_file($target)) {
             require $target;
             return true;
@@ -222,6 +226,9 @@ class Autoloader
         } else {
             $target = "{$basedir}/{$namespace}/{$rest}.php";
         }
+
+        // 把文件路径标准化，统一使用unix格式
+        $target = str_replace('\\', '/', $target);
 
         // 如果目标文件存在，则require进来
         if (file_exists($target) && is_file($target)) {
@@ -303,6 +310,10 @@ class Autoloader
 
         // 如果找到这条记录，载入对应的文件。如果对应的文件不存在，返回false
         $target = $basedir . '/' . $map[$FQCN];
+
+        // 把文件路径标准化，统一使用unix格式
+        $target = str_replace('\\', '/', $target);
+
         if (file_exists($target) && is_file($target)) {
             require $target;
             return true;
