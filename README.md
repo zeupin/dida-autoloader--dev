@@ -48,10 +48,10 @@ composer require dida/autoloader
 
 ### 推荐方法 1 而不是方法 2 的原因
 
-方法 1 和方法 2 的主要区别在于**搜索的优先顺序**：
+方法 1 和方法 2 的主要区别在于 **搜索的优先顺序** ：
 
-- 用方法 1，先搜 `AutoLoader` 的定义，找不到再去 `composer.json` 的定义里面搜。
-- 用方法 2，先搜 `composer.json` 的定义里面搜，找不到再去 `AutoLoader` 的定义里面搜。
+- 用方法 1，先搜 `Dida\AutoLoader` 的定义，找不到再去 `composer.json` 的定义里面搜。
+- 用方法 2，先搜 `composer.json` 的定义里面搜，找不到再去 `Dida\AutoLoader` 的定义里面搜。
 
 在实际项目中，想使用 `AutoLoader` 的目的，绝大多数都是要使用自定义的类，而不是 Composer 的 vendor 里面的库，所以用方法 1 能更好达成此目的。
 
@@ -104,7 +104,7 @@ return [
 
 ## 版权声明
 
-版权所有 (c) 2017-2019 上海宙品信息科技有限公司。<br>Copyright (c) 2017-2019 Zeupin LLC. <http://zeupin.com>
+版权所有 (c) 上海宙品信息科技有限公司。<br>Copyright (c) Zeupin LLC. <http://zeupin.com>
 
 源代码采用 MIT 授权协议。<br>Licensed under The MIT License.
 

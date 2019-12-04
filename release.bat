@@ -9,6 +9,4 @@ del /f /s /q            "%TARGET_DIR%\src\*.*"
 rd /s /q                "%TARGET_DIR%\src\"
 xcopy /y /s  src        "%TARGET_DIR%\src\"
 
-php phpcodeclean.php
-
 ping -n 10 127.0.0.1>nul

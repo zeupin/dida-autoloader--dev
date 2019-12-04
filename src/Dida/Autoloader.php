@@ -1,7 +1,10 @@
 <?php
 /**
- * Dida Framework --Powered by Zeupin LLC
- * http://dida.zeupin.com
+ * Dida Framework  -- PHP轻量级快速开发框架
+ * 版权所有 (c) 上海宙品信息科技有限公司
+ *
+ * 官网: <https://github.com/zeupin/dida>
+ * Gitee: <https://gitee.com/zeupin/dida>
  */
 
 namespace Dida;
@@ -14,7 +17,7 @@ class Autoloader
     /**
      * 版本号
      */
-    const VERSION = '20171211';
+    const VERSION = '20191121';
 
     /**
      * @var boolean
