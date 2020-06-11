@@ -17,7 +17,7 @@ class Autoloader
     /**
      * 版本号
      */
-    const VERSION = '20191121';
+    const VERSION = '20200611';
 
     /**
      * @var boolean
@@ -360,6 +360,32 @@ class Autoloader
             return class_alias($real, $alias);
         } else {
             return false;
+        }
+    }
+
+
+    /**
+     * 给出一个类名，获取定义这个类的php文件路径
+     *
+     * @param string $classname
+     *
+     * @return string|false|null
+     *      找到类文件，则返回类文件路径。
+     *      如果这个类是在 PHP 核心或 PHP 扩展中定义的，则返回 false。
+     *      没找到这个类，返回 null。
+     */
+    public static function getClassFilePath($classname)
+    {
+        try {
+            // 生成类反射实例，失败会抛出 \ReflectionException 异常
+            $instance = new \ReflectionClass($classname);
+
+            // 参见 ReflectionClass::getFileName() 的 PHP 帮助文档
+            // 找到类文件，返回类文件；如果是PHP的核心类或者扩展定义的类，则返回false。
+            return $instance->getFileName();
+        } catch (\ReflectionException $e) {
+            // 类不存在，返回 null
+            return null;
         }
     }
 }
