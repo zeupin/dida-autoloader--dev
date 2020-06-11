@@ -63,13 +63,17 @@ composer require dida/autoloader
 public static function init();
 ```
 
-### 四种匹配模式
+### API
 
 ```php
+// 四种匹配模式
 public static function addPsr4($namespace, $basedir);
 public static function addPsr0($namespace, $basedir);
 public static function addClassmap($mapfile, $basedir = null);
 public static function addAlias($alias, $real);
+
+// 一个工具函数
+public static function getClassFilePath($classname);
 ```
 
 ## 用法
