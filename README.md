@@ -63,16 +63,19 @@ composer require dida/autoloader
 public static function init();
 ```
 
-### API
+### 四种匹配模式
 
 ```php
-// 四种匹配模式
 public static function addPsr4($namespace, $basedir);
 public static function addPsr0($namespace, $basedir);
 public static function addClassmap($mapfile, $basedir = null);
 public static function addAlias($alias, $real);
+```
 
-// 一个工具函数
+### 工具函数
+
+```php
+// 获取类文件的实际文件路径
 public static function getClassFilePath($classname);
 ```
 
